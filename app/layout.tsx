@@ -26,6 +26,40 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.setOptiCookieConsent = function(consent) {
+  try { localStorage.setItem("opti_consent", consent); } catch (e) {}
+};
+// Auto-accept consent if explicit consent mode is disabled
+window.setOptiCookieConsent("yes");
+`,
+          }}
+        />
+
+        <script
+          async
+          dangerouslySetInnerHTML={{
+            __html: `!(function (h, i, e) {
+var t = 1000;
+var n = h.createElement("style");
+n.id = e;
+n.innerHTML = "body{opacity:0}";
+h.head.appendChild(n);
+i.rmfk = function () {
+  var t = h.getElementById(e);
+  t && t.parentNode.removeChild(t);
+};
+setTimeout(i.rmfk, t);
+})(document, window, "optimeleon-overlay");
+
+!function(e,t,n,o,c,a,l){e.optimeleon||(c=e.optimeleon=function(){c.callMethod?c.callMethod.apply(c,arguments):c.queue.push(arguments)},c.push=c,c.queue=[],(a=t.createElement(n)).async=!0,a.src="https://cdn-stag.optimeleon.com/th0-48bcb/ver-1rtdg/v1.main.js",(l=t.getElementsByTagName(n)[0]).parentNode.insertBefore(a,l))}(window,document,"script");
+optimeleon("init",true,true);`,
+          }}
+        />
+      </head>
+
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <header className="border-b border-gray-200 dark:border-gray-800 py-4">
           <div className="max-w-5xl mx-auto px-6 flex items-center justify-between">
