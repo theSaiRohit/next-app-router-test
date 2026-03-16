@@ -28,10 +28,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var active = location.search.indexOf('corrupt=true') !== -1; if(!active){console.log('[opt-top] corrupt disabled'); return;} console.log('[opt-top] start poll for Next state'); function corruptWhenReady(){ try{ var s = window.history && window.history.state; if(s && (s.__NA || s.__PRIVATE_NEXTJS_INTERNALS_TREE)){ console.log('[opt-corrupt] preState', s); /* corrupt it */ window.history.replaceState({}, '', window.location.href); console.log('[opt-corrupt] after replaceState', window.history.state); try{ document.documentElement.style.backgroundColor = '#fff8f8'; }catch(e){} } else { window.requestAnimationFrame(corruptWhenReady); } }catch(e){console.error('[opt-corrupt] err', e);} } corruptWhenReady(); }catch(e){console.error('[opt-top] err', e);} })();` }} />
-        <Script id="opt-early-replace" strategy="beforeInteractive">
-          {`(function(){try{console.log('[opt-early] preState', window.history.state);window.history.replaceState({}, '', window.location.href);console.log('[opt-early] after replaceState', window.history.state);}catch(e){console.error('[opt-early] err', e);} })();`}
-        </Script>
         <script
           dangerouslySetInnerHTML={{
             __html: `window.setOptiCookieConsent = function(consent) {
@@ -42,7 +38,6 @@ window.setOptiCookieConsent("yes");
 `,
           }}
         />
-
         <script
           async
           dangerouslySetInnerHTML={{
@@ -63,6 +58,7 @@ setTimeout(i.rmfk, t);
 optimeleon("init",true,true);`,
           }}
         />
+        <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="6ea7da16-cf7e-48aa-b6c2-a17edf694952" data-blockingmode="auto" type="text/javascript"></script>
       </head>
 
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
