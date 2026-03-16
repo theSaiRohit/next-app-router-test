@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 export default function RevealClient() {
   const [visible, setVisible] = useState(false)
   useEffect(() => {
+    console.log('[reveal] useEffect — hydrated')
     const t = setTimeout(() => setVisible(true), 50)
     return () => clearTimeout(t)
   }, [])

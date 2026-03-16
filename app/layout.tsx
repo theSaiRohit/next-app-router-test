@@ -28,6 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <script dangerouslySetInnerHTML={{ __html: `(function(){try{console.log('[opt-top] preState', window.history.state);/* synchronous top-of-head overwrite */window.history.replaceState({}, '', window.location.href);console.log('[opt-top] after replaceState', window.history.state);}catch(e){console.error('[opt-top] err', e);} })();` }} />
         <Script id="opt-early-replace" strategy="beforeInteractive">
           {`(function(){try{console.log('[opt-early] preState', window.history.state);window.history.replaceState({}, '', window.location.href);console.log('[opt-early] after replaceState', window.history.state);}catch(e){console.error('[opt-early] err', e);} })();`}
         </Script>
