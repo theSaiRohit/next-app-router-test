@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 import CookieConsent from "../components/CookieConsent";
 import AnalyticsNotice from "../components/AnalyticsNotice";
 
@@ -27,6 +28,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <Script id="opt-early-replace" strategy="beforeInteractive">
+          {`(function(){try{console.log('[opt-early] preState', window.history.state);window.history.replaceState({}, '', window.location.href);console.log('[opt-early] after replaceState', window.history.state);}catch(e){console.error('[opt-early] err', e);} })();`}
+        </Script>
         <script
           dangerouslySetInnerHTML={{
             __html: `window.setOptiCookieConsent = function(consent) {
