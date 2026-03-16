@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Script from "next/script";
-import CookieConsent from "../components/CookieConsent";
 import AnalyticsNotice from "../components/AnalyticsNotice";
+import AnimatedAnalyticsSection from "../components/AnimatedAnalyticsSection";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -76,6 +75,8 @@ optimeleon("init",true,true);`,
 
         <main className="min-h-[60vh]">{children}</main>
 
+  <AnimatedAnalyticsSection />
+
         <AnalyticsNotice />
 
         <footer className="border-t border-gray-200 dark:border-gray-800 py-8">
@@ -83,8 +84,6 @@ optimeleon("init",true,true);`,
             © {new Date().getFullYear()} PulseMark. All rights reserved.
           </div>
         </footer>
-
-        <CookieConsent />
       </body>
     </html>
   );
