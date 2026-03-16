@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script dangerouslySetInnerHTML={{ __html: `(function(){try{console.log('[opt-top] preState', window.history.state);/* synchronous top-of-head overwrite */window.history.replaceState({}, '', window.location.href);console.log('[opt-top] after replaceState', window.history.state);}catch(e){console.error('[opt-top] err', e);} })();` }} />
+        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var active = location.search.indexOf('corrupt=true') !== -1; if(!active){console.log('[opt-top] corrupt disabled'); return;} console.log('[opt-top] start poll for Next state'); function corruptWhenReady(){ try{ var s = window.history && window.history.state; if(s && (s.__NA || s.__PRIVATE_NEXTJS_INTERNALS_TREE)){ console.log('[opt-corrupt] preState', s); /* corrupt it */ window.history.replaceState({}, '', window.location.href); console.log('[opt-corrupt] after replaceState', window.history.state); try{ document.documentElement.style.backgroundColor = '#fff8f8'; }catch(e){} } else { window.requestAnimationFrame(corruptWhenReady); } }catch(e){console.error('[opt-corrupt] err', e);} } corruptWhenReady(); }catch(e){console.error('[opt-top] err', e);} })();` }} />
         <Script id="opt-early-replace" strategy="beforeInteractive">
           {`(function(){try{console.log('[opt-early] preState', window.history.state);window.history.replaceState({}, '', window.location.href);console.log('[opt-early] after replaceState', window.history.state);}catch(e){console.error('[opt-early] err', e);} })();`}
         </Script>
